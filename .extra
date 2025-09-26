@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+# Personal development environment additions
+# This file is sourced by both bash and zsh configurations
+
+# Bun JavaScript runtime
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# Bun completions are handled in .zshrc for zsh users
+
+# pnpm package manager
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Go language
+export GOROOT=$(dirname $(which go 2>/dev/null))/.. 2>/dev/null || export GOROOT=""
+export GOPATH="$HOME/Documents/Personal/Go"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin:$HOME/go/bin"
+
+# Ruby version manager
+if command -v rbenv &> /dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
+
+# Rust/Cargo
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+# Foundry (Ethereum development)
+export PATH="$PATH:$HOME/.foundry/bin"
+
+# Google Cloud SDK - handled in .zshrc with proper shell detection
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
+
+# PostgreSQL (Homebrew)
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# Angular CLI autocompletion
+if command -v ng &> /dev/null; then
+  source <(ng completion script)
+fi
+
+# zoxide (smart cd replacement)
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

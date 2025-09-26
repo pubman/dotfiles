@@ -1,0 +1,104 @@
+# =========================================
+# Starship Configuration - Tokyo Night Theme
+# Replicates the beautiful bash prompt aesthetic
+# =========================================
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character"""
+
+# Username styling (orange for regular user, red for root)
+[username]
+style_user = "bold fg:#ff9e64"  # Tokyo Night orange
+style_root = "bold fg:#f7768e"  # Tokyo Night red
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+# Hostname styling (yellow normally, bold red over SSH)
+[hostname]
+ssh_only = false
+format = " at [$hostname]($style)"
+style = "fg:#e0af68"  # Tokyo Night yellow
+ssh_symbol = ""
+
+# Directory styling (green path)
+[directory]
+format = " in [$path]($style)"
+style = "bold fg:#9ece6a"  # Tokyo Night green
+truncation_length = 0
+truncate_to_repo = false
+
+# Git branch styling (violet)
+[git_branch]
+format = " on [$symbol$branch]($style)"
+style = "fg:#bb9af7"  # Tokyo Night purple
+symbol = ""
+
+# Git status styling (blue indicators)
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+style = "fg:#7aa2f7"  # Tokyo Night blue
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Line break and character prompt
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[\\$](bold fg:#565f89)"  # Tokyo Night comment
+error_symbol = "[\\$](bold fg:#f7768e)"     # Tokyo Night red
+vicmd_symbol = "[\\$](bold fg:#9ece6a)"     # Tokyo Night green
+
+# =========================================
+# Additional Module Configuration
+# =========================================
+
+# Disable modules that aren't needed to keep it clean
+[aws]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+# Keep terminal title functionality
+[custom.title]
+when = true
+command = "echo $PWD | sed 's|.*/||'"
+format = ""
