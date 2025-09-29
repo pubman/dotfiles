@@ -177,13 +177,6 @@ return {
 				end,
 			})
 
-			-- Format on save for Python files
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*.py",
-				callback = function()
-					vim.lsp.buf.format({ async = false })
-				end,
-			})
 
 			-- Diagnostic Config
 			-- See :help vim.diagnostic.Opts
@@ -247,6 +240,7 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+				"ruff",   -- Python formatter, linter, import sorter (all-in-one, fast)
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

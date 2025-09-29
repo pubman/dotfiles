@@ -2,50 +2,10 @@
 return {
 	-- clangd = {},
 	gopls = {},
-	pylsp = {
-		-- Python LSP Server (pylsp) installed via Mason with jedi support for better docstrings
-		settings = {
-			pylsp = {
-				plugins = {
-					-- Jedi provides completions with docstrings
-					jedi_completion = {
-						enabled = true,
-						include_params = true,
-					},
-					jedi_hover = {
-						enabled = true,
-					},
-					jedi_references = {
-						enabled = true,
-					},
-					jedi_signature_help = {
-						enabled = true,
-					},
-					jedi_symbols = {
-						enabled = true,
-						all_scopes = true,
-					},
-					-- Enable linting plugins
-					pyflakes = { enabled = true },
-					pycodestyle = {
-						enabled = true,
-						maxLineLength = 88,  -- Black's default
-					},
-					mccabe = {
-						enabled = true,
-						threshold = 10,
-					},
-					-- Use autopep8 for formatting
-					autopep8 = {
-						enabled = true,
-						maxLineLength = 88,
-					},
-					-- Disable pylint (can be slow) and flake8 (redundant with pyflakes + pycodestyle)
-					pylint = { enabled = false },
-					flake8 = { enabled = false },
-				},
-			},
-		},
+	jedi_language_server = {
+		-- Jedi Language Server - already installed and working
+		-- Provides completions, hover, references, etc.
+		-- No built-in formatting/linting - we'll use conform.nvim for formatting
 	},
 	-- rust_analyzer = {},
 	-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
