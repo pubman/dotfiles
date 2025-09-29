@@ -3,9 +3,15 @@ return {
 	-- clangd = {},
 	gopls = {},
 	jedi_language_server = {
-		-- Jedi Language Server - already installed and working
-		-- Provides completions, hover, references, etc.
-		-- No built-in formatting/linting - we'll use conform.nvim for formatting
+		settings = {
+			completion = {
+				resolveEagerly = true,
+				disableSnippets = false,
+			},
+			diagnostics = { enable = true },
+			hover = { enable = true },
+			signature = { enable = true },
+		},
 	},
 	-- rust_analyzer = {},
 	-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

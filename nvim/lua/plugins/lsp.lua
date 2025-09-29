@@ -339,18 +339,21 @@ return {
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 200,
-					window = {
-						max_width = 80,
-						max_height = 20,
-						border = "rounded",
-					},
+					window = { border = 'rounded' }
 				},
+				menu = {
+					draw = {
+						columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } }
+					}
+				}
 			},
 
 			sources = {
 				default = { "lsp", "path", "snippets", "lazydev" },
 				providers = {
+					lsp = { score_offset = 100 },  -- Prioritize LSP completions
 					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+					snippets = { score_offset = -50 }, -- Lower priority for snippets to reduce duplicates
 				},
 			},
 
