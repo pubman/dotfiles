@@ -177,6 +177,14 @@ return {
 				end,
 			})
 
+			-- Format on save for Python files
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.py",
+				callback = function()
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+
 			-- Diagnostic Config
 			-- See :help vim.diagnostic.Opts
 			vim.diagnostic.config({

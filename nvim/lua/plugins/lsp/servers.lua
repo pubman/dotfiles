@@ -3,8 +3,7 @@ return {
 	-- clangd = {},
 	gopls = {},
 	pylsp = {
-		-- Python LSP Server (pylsp) installed via pipx with jedi support for better docstrings
-		cmd = { "/Users/euanhay/.local/bin/pylsp" },
+		-- Python LSP Server (pylsp) installed via Mason with jedi support for better docstrings
 		settings = {
 			pylsp = {
 				plugins = {
@@ -26,11 +25,23 @@ return {
 						enabled = true,
 						all_scopes = true,
 					},
-					-- Disable other plugins we don't need
+					-- Enable linting plugins
+					pyflakes = { enabled = true },
+					pycodestyle = {
+						enabled = true,
+						maxLineLength = 88,  -- Black's default
+					},
+					mccabe = {
+						enabled = true,
+						threshold = 10,
+					},
+					-- Use autopep8 for formatting
+					autopep8 = {
+						enabled = true,
+						maxLineLength = 88,
+					},
+					-- Disable pylint (can be slow) and flake8 (redundant with pyflakes + pycodestyle)
 					pylint = { enabled = false },
-					pycodestyle = { enabled = false },
-					mccabe = { enabled = false },
-					pyflakes = { enabled = false },
 					flake8 = { enabled = false },
 				},
 			},
