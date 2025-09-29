@@ -33,8 +33,7 @@ vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
-vim.o.foldmethod = "indent"
-vim.o.foldlevelstart = 99
+vim.o.foldmethod = "manual"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -100,5 +99,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
+	end,
+})
+
+-- Python-specific settings
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "python",
+	desc = "Set Python-specific indentation settings",
+	group = vim.api.nvim_create_augroup("python-settings", { clear = true }),
+	callback = function()
+		vim.bo.expandtab = true
+		vim.bo.tabstop = 4
+		vim.bo.shiftwidth = 4
+		vim.bo.softtabstop = 4
 	end,
 })

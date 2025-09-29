@@ -20,6 +20,8 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = false },
+  -- Ensure lock file stays in dotfiles directory (follows symlink)
+  lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
   -- Enable luarocks support
   rocks = {
     enabled = true,
