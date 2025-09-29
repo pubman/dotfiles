@@ -34,6 +34,7 @@ vim.schedule(function()
 end)
 
 vim.o.foldmethod = "indent"
+vim.o.foldlevelstart = 99
 
 -- Enable break indent
 vim.o.breakindent = true
