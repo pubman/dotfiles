@@ -254,6 +254,8 @@ return {
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
+					-- Explicitly disable pyright since we're using jedi-language-server for Python
+					pyright = function() end,
 				},
 			})
 		end,
@@ -332,7 +334,15 @@ return {
 			completion = {
 				-- By default, you may press `<c-space>` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = true, auto_show_delay_ms = 200 },
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+					window = {
+						max_width = 80,
+						max_height = 20,
+						border = "rounded",
+					},
+				},
 			},
 
 			sources = {
@@ -358,3 +368,4 @@ return {
 		},
 	},
 }
+
