@@ -108,9 +108,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	desc = "Set Python-specific indentation settings",
 	group = vim.api.nvim_create_augroup("python-settings", { clear = true }),
 	callback = function()
-		vim.bo.expandtab = true
-		vim.bo.tabstop = 4
-		vim.bo.shiftwidth = 4
-		vim.bo.softtabstop = 4
+		vim.schedule(function()
+			vim.bo.expandtab = true
+			vim.bo.tabstop = 4
+			vim.bo.shiftwidth = 4
+			vim.bo.softtabstop = 4
+		end)
 	end,
 })

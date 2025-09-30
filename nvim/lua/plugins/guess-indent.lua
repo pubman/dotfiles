@@ -4,7 +4,15 @@ return {
   config = function()
     require('guess-indent').setup({
       filetype_exclude = {
-        "python"
+        "python",
+        "netrw",
+        "tutor",
+      },
+      buftype_exclude = {
+        "help",
+        "nofile",
+        "terminal",
+        "prompt",
       },
       -- Don't override expandtab - respect your global setting
       override_editorconfig = false,
